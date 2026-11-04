@@ -48,7 +48,6 @@ def test_empty_password_reports_length_and_all_missing_categories():
         "no special",
     ]
 
-
 def test_long_valid_password_is_strong():
     assert strength("Abcdefghij1!xy") == "strong"
 
@@ -83,3 +82,4 @@ def test_suggest_fix_uses_first_issue_when_password_has_multiple_issues():
 )
 def test_suggest_fix_for_first_issue(issues, expected_suggestion):
     assert suggest_fix(issues) == expected_suggestion
+
