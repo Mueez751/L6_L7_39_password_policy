@@ -1,17 +1,41 @@
 def first_character_type(pw):
-    ch = pw[0]
+    if pw is None:
+        return 'symbol'
+
+    text = str(pw)
+    if not text:
+        return 'symbol'
+
+    ch = text[0]
     if ch.isdigit():
         return 'digit'
     if ch.isalpha():
         return 'letter'
     return 'symbol'
 
+
 def split_credentials(text):
-    user, password = text.split(':')
+    if text is None:
+        return '', ''
+
+    text = str(text)
+    if ':' not in text:
+        return text.strip(), ''
+
+    user, password = text.split(':', 1)
     return user.strip(), password.strip()
 
+
 def digit_ratio(pw):
-    return sum(c.isdigit() for c in pw) / len(pw)
+    if pw is None:
+        return 0.0
+
+    text = str(pw)
+    if not text:
+        return 0.0
+
+    return sum(c.isdigit() for c in text) / len(text)
+
 
 def main():
     print("==== Running first_character_type ====")
@@ -28,6 +52,7 @@ def main():
     user_input = input("Enter a password to measure: ")
     result = digit_ratio(user_input)
     print("Digit Ratio:", result)
+
 
 if __name__ == "__main__":
     main()
